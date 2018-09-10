@@ -4,8 +4,11 @@ import java.io.*;
 
 public class ReadFile {
 
-
-    public static InputStream readSingleFile() {
+    /**
+     * 字节流读取文件
+     * @return
+     */
+    public static InputStream readSingleFile(String s) {
         InputStream in = null;
         InputStream in2 = null;
         try {
@@ -30,6 +33,33 @@ public class ReadFile {
             e.printStackTrace();
         }
         return in;
+    }
+
+    /**
+     * 通过字符流读取文件
+     * @return
+     */
+    public static Reader readSingleFile(){
+        Reader reader = null;
+        try {
+            reader = new FileReader("readme.txt");
+            InputStream is = new FileInputStream("readme.txt");
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            while (true){
+                String msg = br.readLine();
+                if (msg == null){
+                    break;
+                }
+                System.out.println(msg);
+            }
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return reader;
     }
 
     public static void main(String[] args) {
